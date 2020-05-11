@@ -7,14 +7,14 @@ namespace Graaf
     class Punt
     {
         //variabelen
-        public Double x;
-        public Double y;
+        public Double x { get; set; }
+        public Double y { get; set; }
+
 
         //constructor
         public Punt(Double x, Double y)
         {
-            this.x = x;
-            this.y = y;
+            (this.x, this.y) = (x, y);
         }
 
         //functies
@@ -26,14 +26,12 @@ namespace Graaf
 
         public override int GetHashCode()
         {
-            int uitkomst = 1;
-            return uitkomst;
+            return 1;
         }
 
         public override string ToString()
         {
-            String uitkomst = "hallo";
-            return uitkomst;
+            return $"x: {x} \n y: {y}";
         }
     }
 }

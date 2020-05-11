@@ -7,18 +7,19 @@ namespace Graaf
     class Segment
     {
         //variabelen
-        public Knoop beginKnoop;
-        public Knoop eindKnoop;
-        public int segmentID;
-        public List<Punt> vertices;
+        public Knoop beginKnoop { get; set; }
+        public Knoop eindKnoop { get; set; }
+        public int segmentID { get; set; }
+
+        public List<Punt> vertices { get; set; }
+        public int linksID { get; set; }
+        public int rechtsID { get; set; }
+
 
         //constructor
-        public Segment(int segmentID, Knoop beginKnoop, Knoop eindKnoop, List<Punt> vertices)
+        public Segment(int segmentID, Knoop beginKnoop, Knoop eindKnoop, List<Punt> vertices, int linksID, int rechtsID)
         {
-            this.segmentID = segmentID;
-            this.beginKnoop = beginKnoop;
-            this.eindKnoop = eindKnoop;
-            this.vertices = vertices;
+            (this.segmentID, this.beginKnoop, this.eindKnoop, this.vertices, this.linksID, this.rechtsID) = (segmentID, beginKnoop, eindKnoop, vertices, linksID, rechtsID);
         }
 
 
@@ -38,8 +39,27 @@ namespace Graaf
 
         public override string ToString()
         {
-            String stringUitkomst = "begin id: " + beginKnoop.knoopId + ", eind id: " + eindKnoop.knoopId+", segment id: " + segmentID;
-            return stringUitkomst;
+            return $"id: {segmentID}\n1e punt:\n{vertices[0].ToString()}\n2e punt:\n{vertices[1].ToString()}\n\n";
+        }
+
+        public string ToString2(Dictionary<int, String> strnlijst)
+        {
+            String uitkomst = $"SEGMENT samenvatting \n begin knoop id: {beginKnoop.knoopId}, eind knoop id: {eindKnoop.knoopId}, segment id: {segmentID}" +
+                $"\n links id: {linksID} {strnlijst[linksID]}, rechts id: {rechtsID} {strnlijst[rechtsID]}";
+            int counter = 1;
+            foreach(Punt p in vertices)
+            {
+                uitkomst += $"\n #{counter.ToString()} x: {p.x}, y: {p.y}";
+                counter++;
+            }
+            uitkomst += $"\n--------------------\n";
+
+            return uitkomst;
+        }
+
+        public String ToString3(String naam)
+        {
+            return naam;
         }
 
     }

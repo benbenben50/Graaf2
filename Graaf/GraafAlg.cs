@@ -8,7 +8,7 @@ namespace Graaf
     {
         //variabelen
         public int graafID;
-        public Dictionary<Knoop, List<Segment>> map;
+        public Dictionary<Knoop, List<Segment>> map; /*lijst van segmenten met als key straatID*/
         public List<Knoop> knopen;
         
 
@@ -24,12 +24,14 @@ namespace Graaf
             return knopen;
         }
 
-
-
         public void showGraaf()
         {
 
         }
-        
+        public override string ToString()
+        {
+            return $"Graaf id: {graafID}";
+        }
+
     }
 }

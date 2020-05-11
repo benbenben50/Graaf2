@@ -32,7 +32,7 @@ namespace Graaf
         }
         public override string ToString()
         {
-            return "knoopID: " + knoopId + " punt: x:" + punt.x + ", y: " + punt.y;
+            return $"knoopID: {knoopId}, punten: \n {punt.ToString()}";
         }
     }
 }

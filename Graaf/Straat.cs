@@ -14,9 +14,7 @@ namespace Graaf
         //constructor
         public Straat(int straatID, String straatNaam, GraafAlg graaf)
         {
-            this.straatID = straatID;
-            this.straatNaam = straatNaam;
-            this.graaf = graaf;
+            (this.straatID, this.straatNaam, this.graaf) = (straatID, straatNaam, graaf);
         }
 
         //functies

@@ -7,32 +7,46 @@ namespace Graaf
     {
         static void Main(string[] args)
         {
-            //bestand lezen
-            String path = @"C:\Users\Ben\Documents\school\prog3\WRdata10.csv";
-            List<String> result = Reader.FileSplitter(path);
+            //path naar bestand invullen
+            String pathAlgemeen = @"C:\Users\Ben\Documents\school\prog3\WRdata.csv";
+            String pathStraten = @"C:\Users\Ben\Documents\school\prog3\WRstraatnamen.csv";
+            String pathGemeente = @"C:\Users\Ben\Documents\school\prog3\WRGemeentenaam.csv";
+            //domeincontroller aanmaken
+            Domeincontroller dc = new Domeincontroller(pathAlgemeen, pathStraten, pathGemeente);
 
-
-            //printen van een straat waarvan alles gesplit is:
-            List<String> lijn2Test = Reader.Lijnsplitter(result[0]); /*eerste lijn (titels)*/
-            List<String> lijn1Test = Reader.Lijnsplitter(result[2]);        
-            List<String> gesplitteLijn = Reader.InLijnSplitter(lijn1Test); /*splitten van een random lijn*/
-
-            //split bovenstaande lijn en steek alle coördinaten in knoop-objecten
-            List<Knoop> testknopen = Reader.inLijnKnopenSplitter(gesplitteLijn);
-
-            //knopen lijst weergeven            
-            foreach(Knoop k in testknopen)
-            {
-                Console.WriteLine(k.ToString());
-            }
-           
-
-            /*testen van de lijn hierboven, met de titels ernaast
-            Console.Write(lijn2Test[0] + ": " + lijn1Test[0] + "\n" + lijn2Test[1] + ": " + lijn1Test[1] + "\n" + lijn2Test[2] 
-                + ": " + lijn1Test[2] + "\n" + lijn2Test[3] + ": " + lijn1Test[3] + "\n" + lijn2Test[4] + ": " + lijn1Test[4] + "\n" +
-                lijn2Test[5] + ": " + lijn1Test[5] + "\n" + lijn2Test[6] + ": " + lijn1Test[6] + "\n" + lijn2Test[7] + ": " + lijn1Test[7]);
-            */
             
+            //keuzemenu
+            int input;
+            Boolean verder = true;
+            do
+            {
+                Console.Write($"---------------\n0: sluiten\n1: toon straten\n2: toon gemeentes" +
+                    $"\n3: toon segmenten\n4: geef segmenten met straatnaam:\n---------------\n");
+                input = int.Parse(Console.ReadLine());
+                switch (input)
+                {
+                    case 0:
+                        Console.WriteLine("Sluiten");
+                        verder = false;
+                        break;
+                    case 1:
+                        Console.Write($"---------------\n\n{dc.MenuStraten()}\n ---------------\n");
+                        break;
+                    case 2:
+                        Console.Write(dc.MenuGemeentes());
+                        break;
+                    case 3:
+                        Console.Write(dc.MenuSegmenten());
+                        break;
+                    case 4:
+                        Console.Write(dc.MenuSegmentenMetNaam());
+                        break;
+                    default:
+                        Console.WriteLine("Verkeerd");
+                        break;
+                }
+            } while (verder == true);
+            Environment.Exit(0);
         }
     }
 }
